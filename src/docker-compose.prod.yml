@@ -212,6 +212,11 @@ services:
       - urls__catalog=http://catalog-api
       - urls__orders=http://ordering-api
       - urls__identity=http://identity-api              #Local: You need to open your local dev-machine firewall at range 5100-5110.
+      - CatalogUrlHC=http://catalog-api/hc
+      - OrderingUrlHC=http://ordering-api/hc
+      - IdentityUrlHC=http://identity-api/hc
+      - BasketUrlHC=http://basket-api/hc
+      - PaymentUrlHC=http://payment-api/hc
     ports:
       - "80"   # Important: In a production environment your should remove the external port (5120) kept here for microservice debugging purposes.
                     # The API Gateway redirects and access through the internal port (80).
@@ -223,6 +228,11 @@ services:
       - urls__catalog=http://catalog-api
       - urls__orders=http://ordering-api
       - urls__identity=http://identity-api              #Local: You need to open your local dev-machine firewall at range 5100-5110.
+      - CatalogUrlHC=http://catalog-api/hc
+      - OrderingUrlHC=http://ordering-api/hc
+      - IdentityUrlHC=http://identity-api/hc
+      - BasketUrlHC=http://basket-api/hc
+      - PaymentUrlHC=http://payment-api/hc
     ports:
       - "80"   # Important: In a production environment your should remove the external port (5121) kept here for microservice debugging purposes.
                     # The API Gateway redirects and access through the internal port (80).
