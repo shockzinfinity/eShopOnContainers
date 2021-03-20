@@ -71,12 +71,13 @@ Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
 {
     var seqServerUrl = configuration["Serilog:SeqServerUrl"];
     var logstashUrl = configuration["Serilog:LogstashgUrl"];
-    return new LoggerConfiguration()
+  var apiKey = configuration["Serilog:ApiKey"];
+  return new LoggerConfiguration()
         .MinimumLevel.Verbose()
         .Enrich.WithProperty("ApplicationContext", AppName)
         .Enrich.FromLogContext()
         .WriteTo.Console()
-        .WriteTo.Seq(string.IsNullOrWhiteSpace(seqServerUrl) ? "http://seq" : seqServerUrl)
+        .WriteTo.Seq(string.IsNullOrWhiteSpace(seqServerUrl) ? "http://seq" : seqServerUrl, apiKey: apiKey)
         .WriteTo.Http(string.IsNullOrWhiteSpace(logstashUrl) ? "http://localhost:8080" : logstashUrl)
         .ReadFrom.Configuration(configuration)
         .CreateLogger();
