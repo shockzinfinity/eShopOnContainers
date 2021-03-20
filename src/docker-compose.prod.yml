@@ -89,7 +89,7 @@ services:
     ports:
       - "80"   # The API Gateway redirects and access through the internal port (80).
 
-  ordering.backgroundtasks:
+  ordering-backgroundtasks:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
@@ -129,7 +129,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - PurchaseUrl=http://webshoppingapigw
-      - IdentityUrl=http://10.0.75.1:5105  # Local Mac: Use http://docker.for.mac.localhost:5105 || Local Windows:  Use 10.0.75.1 in a "Docker for Windows" environment, if using "localhost" from browser. || #Remote access: Use ${ESHOP_PROD_EXTERNAL_DNS_NAME_OR_IP} if using external IP or DNS name from browser.
+      # - IdentityUrl=http://10.0.75.1:5105  # Local Mac: Use http://docker.for.mac.localhost:5105 || Local Windows:  Use 10.0.75.1 in a "Docker for Windows" environment, if using "localhost" from browser. || #Remote access: Use ${ESHOP_PROD_EXTERNAL_DNS_NAME_OR_IP} if using external IP or DNS name from browser.
+      - IdentityUrl=${ESHOP_PROD_EXTERNAL_DNS_NAME_OR_IP}
       - CatalogUrlHC=http://catalog-api/hc
       - OrderingUrlHC=http://ordering-api/hc
       - IdentityUrlHC=http://identity-api/hc     #Local: Use ${ESHOP_PROD_EXTERNAL_DNS_NAME_OR_IP}, if using external IP or DNS name from browser.
@@ -182,7 +183,7 @@ services:
     ports:
       - "27017:27017"  # Important: In a production environment your should remove the external port
 
-  basket.data:
+  basketdata:
     ports:
       - "6379:6379"    # Important: In a production environment your should remove the external port
 
